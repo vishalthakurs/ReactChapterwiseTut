@@ -1,16 +1,14 @@
+import Video from "./components/Video";
+import './App.css'
+function App(){
+  return ( 
+  <div className="App">
+      Hello This is App
+      <Video title="React Js Tutorials" tutor="Vishal" views="19.2M" time={Date.now} />
+      <Video title="Node Js Tutorials" tutoe="Janny" views="19.2M" time={Date.now}  />
+  </div>
+  )
 
-import './App.css';
-import Assign3 from './Assignments/Assign3';
-
-function App() {
-  return (
-    <div className="App">
-      <div className="App-header">
-        Lets Code
-        <Assign3 />
-      </div>
-    </div>
-  );
 }
 
 export default App;
