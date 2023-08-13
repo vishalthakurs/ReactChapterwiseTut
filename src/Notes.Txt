@@ -1,18 +1,19 @@
-******************** Conditional Rendering **************************************
--> Components will often need to display different things depending on different conditions.
-1) Inside Jsx we cannot write if else because it wont return anything.
--> Instead we use different operators
-    a) Ternary Operator:
-                        It is similar to the Ternary operator in Javascript. If the expression is true, 
-                        first stamenet wiil  get executed,
-                        else second statement wil get executed.
-        Syntax: 
-                exp? statement1:statement2
-    
+*************************************** Events And Event Handling *****************************************************
 
-    b) Logical AND operator (&&) :
-                                    If the condition is true then only the statement after && will get executed. If it is false React will ignore it.
-        Syntax:
-                age>18 && <h1> I am elgible</h1>
-    
-    c) 
+-> Events are nothing but the tasks or the acions.
+-> Events which are handled by functions are called event handling functions.
+->React lets you add event handlers to your JSX. Event handlers are your 
+  own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+
+-> In React we use events in camelCase.
+-> If we pass function directly, then it will get executed when the page renders
+        i.e onClick={handleClick()};
+
+-> To avoid the above problem we should only definfe the function or pass arrow function
+        i.e onClick={handleclick}
+        i.e onClick={()=>handleClick()};
+
+
+
+
+-> we can also pass the functions as props.
