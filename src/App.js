@@ -1,18 +1,28 @@
-//import Video from "./components/Video";
-import './App.css'
-import Resume from "./Assignments/Assignment1/Resume";
-function App(){
-  return ( 
-  // <div className="App">
-  //     Hello This is App
-  //     <Video title="React Js Tutorials" tutor="Vishal" views="19.2M" time={Date.now} />
-  //     <Video title="Node Js Tutorials" tutoe="Janny" views="19.2M" time={Date.now}  />
-  // </div>
-  <div className="App">
-    <Resume />
-  </div>
-  )
+import './App.css';
+import Video from './components/Video';
 
+function App() {
+  let obj = {
+    title: 'React JS tutorial',
+    views: '999K',
+    time: '1 year ago',
+    channel: 'Coder Dost',
+    verified:"false"
+  };
+  return (
+    <div className="App">
+      <div>Videos</div>
+      <Video {...obj}></Video>
+      <Video title="Node JS tutorial" views="100K" time="1 month ago" verified={true}></Video>
+      <Video
+        title="Mongo DB tutorial"
+        views="1M"
+        time="1 month ago"
+        channel="Coder Dost"
+        verified={false}
+      ></Video>
+    </div>
+  );
 }
 
 export default App;
