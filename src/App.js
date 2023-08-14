@@ -1,12 +1,27 @@
+import { useState } from 'react';
 import './App.css';
+import Counter from './components/Counter';
 import PlayButton from './components/PlayButton';
 import Video from './components/Video';
 import data from './data/data';
 function App() {
+  const [videos,setVideos]=useState(data);
+
+  const handleClick=()=>{
+    setVideos([...videos,{
+      id:videos.length+1,
+      title: 'Java tutorial',
+      views: '1M',
+      time: '1 year ago',
+      channel: 'Vishal Dev',
+      verified:"false"
+    }])
+  }
   return (
     <div className="App" onClick={()=>console.log('App')}>
-      <div>Videos</div>
-      {data.map((video) => (
+      
+      <div onClick={handleClick}><button>Add Video </button></div>
+      {videos.map((video) => (
         <Video
           key={video.id}
           title={video.title}
@@ -30,6 +45,7 @@ function App() {
 
         {/* <PlayButton message="pause-msg" onSmash={()=>alert('Playyy')}>Pause</PlayButton> */}
       </div>
+      <Counter />
     </div>
   );
 }

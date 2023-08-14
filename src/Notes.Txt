@@ -1,19 +1,27 @@
-*************************************** Events And Event Handling *****************************************************
+**************************************** State ******************************************************
+-> Basically, component doesn't get rerendered when ever variable changes. It gets re-rendered(updated) when state changes.
+-> state is nothing but a variable that holds a value.
+-> Hooks:
+        Hooks are nothing but the functional components using which we can perform operations with out writing a class.
+        Every hook starts with use.
 
--> Events are nothing but the tasks or the acions.
--> Events which are handled by functions are called event handling functions.
-->React lets you add event handlers to your JSX. Event handlers are your 
-  own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+Rules for using hooks:
+1) First import the hook from library.
+2) Hooks should be used inside component only.
+3) Hooks shouldn't be used in class components.
 
--> In React we use events in camelCase.
--> If we pass function directly, then it will get executed when the page renders
-        i.e onClick={handleClick()};
+a) useState():
+                -> useState() hook is a function given by React.
+                -> usState() returns an array of two elements.
+                        1) elements
+                        2) function
+                -> with the help of useState(), we can store the data inside the variable.
+                -> First argument is to store the data, second arguement (i.e function) is to modify the data.
+                -> we have to use array destructuring concepy
+                        i.e const [count,setCount]=useState(0)   // 0 is the defaul value.
 
--> To avoid the above problem we should only definfe the function or pass arrow function
-        i.e onClick={handleclick}
-        i.e onClick={()=>handleClick()};
+
+*******Note***:
+                -> when ever there is a change in the state, the component gets re rendered(i.e component gets updated)
 
 
-
-
--> we can also pass the functions as props.
