@@ -1,27 +1,6 @@
-**************************************** State ******************************************************
--> Basically, component doesn't get rerendered when ever variable changes. It gets re-rendered(updated) when state changes.
--> state is nothing but a variable that holds a value.
--> Hooks:
-        Hooks are nothing but the functional components using which we can perform operations with out writing a class.
-        Every hook starts with use.
-
-Rules for using hooks:
-1) First import the hook from library.
-2) Hooks should be used inside component only.
-3) Hooks shouldn't be used in class components.
-
-a) useState():
-                -> useState() hook is a function given by React.
-                -> usState() returns an array of two elements.
-                        1) elements
-                        2) function
-                -> with the help of useState(), we can store the data inside the variable.
-                -> First argument is to store the data, second arguement (i.e function) is to modify the data.
-                -> we have to use array destructuring concepy
-                        i.e const [count,setCount]=useState(0)   // 0 is the defaul value.
-
-
-*******Note***:
-                -> when ever there is a change in the state, the component gets re rendered(i.e component gets updated)
-
-
+********************* Forms, Event Objects and lifting state up *********************************
+-> Lifting state means passing the state from one component to another component (i.e from child to parent or from sibling to sibling).
+-> Basically, we cannot send the state from parent to child direct because props are uni directional.
+-> Instead we create a function in parent component and pass it through props and it accepts the argument(data that is present in child item).
+-> In simple words function props will get the data from child to parent.
+-> This is called lifting data up(As props go only downwards)

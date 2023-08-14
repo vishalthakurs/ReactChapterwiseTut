@@ -1,0 +1,14 @@
+form {
+    
+    width: 300px;
+    margin: 20px auto;
+}
+input {
+    display: block;
+    padding: 1em;
+    margin-top: 5px;
+    margin-left:5px ;
+}
+button {
+    margin: 5px 10px;
+}
