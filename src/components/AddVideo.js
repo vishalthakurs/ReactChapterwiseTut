@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddVideo.css'
 
 const initialState={
@@ -10,7 +10,7 @@ const initialState={
 
 }
 
-const AddVideo = ({addVideos}) => {
+const AddVideo = ({dispatch,editableVideo}) => {
     // const [title,setTitle]=useState();
     // const [views,setViews]=useState(0);
 
@@ -23,6 +23,12 @@ const AddVideo = ({addVideos}) => {
         verified:"true"
     }
     const [video,setVideo]=useState(initialState);
+    useEffect(()=>{
+      if(editableVideo)
+      {
+        setVideo(editableVideo);
+      }
+    },[editableVideo])
 
     function handleChange(e)
     {
@@ -32,7 +38,21 @@ const AddVideo = ({addVideos}) => {
     }
     function handleSubmit()
     {
-        addVideos(video);
+      if(editableVideo)
+      {
+        dispatch({
+          type:'UPDATE',
+          payload:video
+        })
+        
+      }
+      else{
+        dispatch({
+          type:'ADD',
+          payload:video
+        })
+      }
+        
         setVideo(initialState);
         
     }
@@ -40,7 +60,7 @@ const AddVideo = ({addVideos}) => {
     <form onSubmit={(e)=>e.preventDefault()}>
       <input type="text"  placeholder='title' onChange={handleChange} name='title' value={video.title}/>
       <input type="text" placeholder='views'onChange={handleChange} name='views' value={video.views}/>
-      <button onClick={handleSubmit}>Add Video</button>
+      <button onClick={handleSubmit}>{editableVideo?'Edit':'Add'} Video</button>
     </form>
   )
 }

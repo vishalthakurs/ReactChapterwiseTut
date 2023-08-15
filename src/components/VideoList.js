@@ -3,7 +3,7 @@ import PlayButton from './PlayButton'
 import Video from './Video'
 
 
-const VideoList = ({videos}) => {
+const VideoList = ({videos,dispatch,editVideo}) => {
   return (
     <div>
        {videos.map((video) => (
@@ -15,6 +15,8 @@ const VideoList = ({videos}) => {
           channel={video.channel}
           verified={video.verified}
           id={video.id}
+          dispatch={dispatch}
+          editVideo={editVideo}
         >
           <PlayButton
             onPlay={() => console.log('Playing..',video.title)}

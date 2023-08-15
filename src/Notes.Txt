@@ -1,6 +1,15 @@
-********************* Forms, Event Objects and lifting state up *********************************
--> Lifting state means passing the state from one component to another component (i.e from child to parent or from sibling to sibling).
--> Basically, we cannot send the state from parent to child direct because props are uni directional.
--> Instead we create a function in parent component and pass it through props and it accepts the argument(data that is present in child item).
--> In simple words function props will get the data from child to parent.
--> This is called lifting data up(As props go only downwards)
+********************************************* useReducer **************************************************************
+-> Redux is a library used for state management.
+-> useReducer is used for custom logic and similar to useState.
+-> Syntax:
+    const [state,dispatch]=useReducer(reducer,initialState):
+-> useReducer accepts two agruments:
+    1) reducer function: 
+        Inside reducer function it accepts two arguements
+            a) state
+            b) action
+        Based on action type we perform the operation and return the state.
+    2) Initial State is the data with out any modifications
+-> It returns destructured array of two things:
+        1) state: on which operation performed
+        2) disptach: To define which action to be performed.
