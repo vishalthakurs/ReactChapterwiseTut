@@ -1,71 +1,69 @@
-import React, { useContext, useEffect, useState } from 'react'
-import './AddVideo.css'
-import VideosDispatchContext from '../context/VideosDispatchContext'
+import './AddVideo.css';
+import { useEffect, useRef, useState} from 'react';
+import useVideoDispatch from '../hooks/VideoDispatch';
 
-const initialState={
+const initialState = {
+    time: '1 month ago',
+    channel: 'Coder Dost',
+    verified: true,
     title:'',
-    views:'',
-    time:'1 month ago',
-    channnel:'dev vishal',
-    verified:true,
+    views:''
+  }
 
-}
+function AddVideo({editableVideo}) {
+  const [video, setVideo] = useState(initialState);
+  const dispatch = useVideoDispatch();
+  const inputRef =  useRef(null);
 
-const AddVideo = ({editableVideo}) => {
-    // const [title,setTitle]=useState();
-    // const [views,setViews]=useState(0);
-
-    const dispatch=useContext(VideosDispatchContext)
-
-
-    const initialState={
-        title: '',
-        views: '',
-        time: '1 month ago',
-        channel: 'Vishal Dev',
-        verified:"true"
+  function handleSubmit(e) {
+    e.preventDefault();
+    if(editableVideo){
+      dispatch({type:'UPDATE',payload:video})
+    }else{
+      dispatch({type:'ADD',payload:video})
     }
-    const [video,setVideo]=useState(initialState);
-    useEffect(()=>{
-      if(editableVideo)
-      {
-        setVideo(editableVideo);
-      }
-    },[editableVideo])
+    
+    setVideo(initialState)
 
-    function handleChange(e)
-    {
-       setVideo({...video,[e.target.name]:e.target.value})
-       console.log(video)
-        
+  }
+  function handleChange(e) {
+    setVideo({...video,
+        [e.target.name] : e.target.value
+    })
+  }
+
+  useEffect(()=>{
+    if(editableVideo){
+      setVideo(editableVideo)
     }
-    function handleSubmit()
-    {
-      if(editableVideo)
-      {
-        dispatch({
-          type:'UPDATE',
-          payload:video
-        })
-        
-      }
-      else{
-        dispatch({
-          type:'ADD',
-          payload:video
-        })
-      }
-        
-        setVideo(initialState);
-        
-    }
+    inputRef.current.focus()
+
+  },[editableVideo])
+
   return (
-    <form onSubmit={(e)=>e.preventDefault()}>
-      <input type="text"  placeholder='title' onChange={handleChange} name='title' value={video.title}/>
-      <input type="text" placeholder='views'onChange={handleChange} name='views' value={video.views}/>
-      <button onClick={handleSubmit}>{editableVideo?'Edit':'Add'} Video</button>
+    <form>
+      <input
+        ref={inputRef}
+        type="text"
+        name="title"
+        onChange={handleChange}
+        placeholder="title"
+        value={video.title}
+      />
+      <input
+        type="text"
+        name="views"
+        onChange={handleChange}
+        placeholder="views"
+        value={video.views}
+      />
+      <button
+        onClick={handleSubmit}
+      >
+        {editableVideo?'Edit':'Add'} Video
+      </button>
     </form>
-  )
+  );
 }
 
-export default AddVideo
+export default AddVideo;

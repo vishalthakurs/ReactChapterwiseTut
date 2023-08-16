@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
-import VideosDispatchContext from '../context/VideosDispatchContext'
+import { useContext } from "react";
+import VideoDispatchContext from "../context/VideosDispatchContext";
 
-const useVideoDispatch = () => {
-  return useContext(VideosDispatchContext)
-    
+
+
+function useVideoDispatch(){
+    return useContext(VideoDispatchContext)
 }
 
 export default useVideoDispatch

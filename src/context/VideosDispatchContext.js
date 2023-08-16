@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const VideosDispatchContext=createContext();
+const VideoDispatchContext = createContext(null)
 
-export default VideosDispatchContext;
+export default VideoDispatchContext;

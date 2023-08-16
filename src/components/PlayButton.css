@@ -1,7 +1,19 @@
-.darkMode {
-    background-color: #333;
-  }
-  .lightMode {
+button{
+    padding: 1em;
+    border-radius: 1em;
+    cursor: pointer;
+}
+button:hover{
+    background-color: grey;
+    color: white;
+}
+button.darkMode, .darkMode button{
+    background-color: black;
+    border: 1px solid yellow;
+    color:white
+}
+button.lightMode, .lightMode button{
     background-color: #ccc;
-    color: black;
-  }
+    border: 1px solid black;
+    color:black
+}
