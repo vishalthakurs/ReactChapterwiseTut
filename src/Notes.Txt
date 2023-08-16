@@ -1,15 +1,58 @@
-********************************************* useReducer **************************************************************
--> Redux is a library used for state management.
--> useReducer is used for custom logic and similar to useState.
--> Syntax:
-    const [state,dispatch]=useReducer(reducer,initialState):
--> useReducer accepts two agruments:
-    1) reducer function: 
-        Inside reducer function it accepts two arguements
-            a) state
-            b) action
-        Based on action type we perform the operation and return the state.
-    2) Initial State is the data with out any modifications
--> It returns destructured array of two things:
-        1) state: on which operation performed
-        2) disptach: To define which action to be performed.
+*********************************** Context API *************************************************
+Problem:
+        (*)State should be held by the highest parent component in the stack that requires access to state.
+        (*) To illustrate, we have many nested components . The component at the top and bottom of the stack needs access to the state.
+        (*) To do this with out Context, we will need to pass the state as "props" through each nested component. This is called "Prop Drilling"
+
+Diagrametically:                                                                
+React- App                                                                      Context (State ..)
+-------------------------------------------                                 ------------|--|---|-------------------------------------------------
+|  -------                                  |                           |               |  |   |                                                 |
+|  | State|                                 |                           |   -----------|---|---|--------------                                                                  |
+|  ------                                   |                           |   |  ch-1 <---    |   |             |                                 |
+|     |                                     |                           |   |               |    |            |                                 |
+|  ----.---                                 |                           |   |      ch-2 <---|     |           |                                  |
+|  | compomnt1|                             |                           |   |                |                |                                  |
+|  -----------                              |                           |   |          ch-3<-------|          |              |                                  |
+|     |                                     |                           |   |                                 |                                  |
+|  -------                                  |                           |   |                                 |                                  |
+|  | component2|                            |                           |   |                                 |                                  |
+|  ------ -----                             |                           |   --------------------------------                                                                  |
+|                                           |                           |                                                                     |  
+|------------------------------------------                             |---------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+-> In context Api , state is at the global state and wrapped in global context provider.
+Steps:
+1) Create a seperate file
+2) import createContext() , initialize and export it
+    i.e export default UserContext=createContext()
+3) To this Context, we need to send the application and wrap the entire application.
+    i.e export UserContextProvider=({children})=>{
+        return <UserContext.Provider value={}>
+                {children}
+                </UserContext.Provider>
+    }
+4) we pass the App to the context provider which comes as children
+5) we import UserContextProvider in index.js and wrap the App  
+            <UserContextProvider>
+                <App />
+                <UserContextProvider />
+6) Now, we will use useContext() in child component and pass the UserContext
+    const data=useContext(UserContext);
+
+
+
+Note:
+        we can create multiple contexts in our app.
+
+
+
+
