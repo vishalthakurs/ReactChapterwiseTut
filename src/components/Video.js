@@ -1,6 +1,11 @@
+
+import useVideoDispatch from '../hooks/VideoDispatch';
 import './Video.css';
 
-function Video({title,id,channel,views,time,verified,children,dispatch,editVideo}) {
+
+function Video({title,id,channel,views,time,verified,children,editVideo}) {
+
+  const dispatch=useVideoDispatch();
 
   function delVideo(id)
   {

@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './AddVideo.css'
+import VideosDispatchContext from '../context/VideosDispatchContext'
 
 const initialState={
     title:'',
@@ -10,9 +11,11 @@ const initialState={
 
 }
 
-const AddVideo = ({dispatch,editableVideo}) => {
+const AddVideo = ({editableVideo}) => {
     // const [title,setTitle]=useState();
     // const [views,setViews]=useState(0);
+
+    const dispatch=useContext(VideosDispatchContext)
 
 
     const initialState={
