@@ -1,58 +1,27 @@
-*********************************** Context API *************************************************
-Problem:
-        (*)State should be held by the highest parent component in the stack that requires access to state.
-        (*) To illustrate, we have many nested components . The component at the top and bottom of the stack needs access to the state.
-        (*) To do this with out Context, we will need to pass the state as "props" through each nested component. This is called "Prop Drilling"
-
-Diagrametically:                                                                
-React- App                                                                      Context (State ..)
--------------------------------------------                                 ------------|--|---|-------------------------------------------------
-|  -------                                  |                           |               |  |   |                                                 |
-|  | State|                                 |                           |   -----------|---|---|--------------                                                                  |
-|  ------                                   |                           |   |  ch-1 <---    |   |             |                                 |
-|     |                                     |                           |   |               |    |            |                                 |
-|  ----.---                                 |                           |   |      ch-2 <---|     |           |                                  |
-|  | compomnt1|                             |                           |   |                |                |                                  |
-|  -----------                              |                           |   |          ch-3<-------|          |              |                                  |
-|     |                                     |                           |   |                                 |                                  |
-|  -------                                  |                           |   |                                 |                                  |
-|  | component2|                            |                           |   |                                 |                                  |
-|  ------ -----                             |                           |   --------------------------------                                                                  |
-|                                           |                           |                                                                     |  
-|------------------------------------------                             |---------------------------------------------------------------------
+************************************ useREf *******************************************************
+-> useRef is a React Hook that lets you reference  a value that's not needed for reandering.
+-> In simple words, whenever there is a change in useRef value unlike useState hook it doesn't re-rendered.
+-> useRef() returns one item. It returns one object called current.
 
 
+Uses:
+    In general, we let react handle all Dom manipulations. But there are some instances , when useRef can be used without Causing issues.
+    In React, we can add 'ref' attribute to an element to access it directly in the Dom
 
+    Ex: use useRef to focus on input:
 
+    import React, {useRef} from React
 
+    const App=()=>{
+        const inputElement=useRef();
+        const focusInput=()=>{
+            inputElement.current.focus();
 
-
-
-
--> In context Api , state is at the global state and wrapped in global context provider.
-Steps:
-1) Create a seperate file
-2) import createContext() , initialize and export it
-    i.e export default UserContext=createContext()
-3) To this Context, we need to send the application and wrap the entire application.
-    i.e export UserContextProvider=({children})=>{
-        return <UserContext.Provider value={}>
-                {children}
-                </UserContext.Provider>
+        }
+        return (
+            <>
+            <input type='text' ref={inputElement} />
+            <button onClick={focusInput} />
+            </>
+        )
     }
-4) we pass the App to the context provider which comes as children
-5) we import UserContextProvider in index.js and wrap the App  
-            <UserContextProvider>
-                <App />
-                <UserContextProvider />
-6) Now, we will use useContext() in child component and pass the UserContext
-    const data=useContext(UserContext);
-
-
-
-Note:
-        we can create multiple contexts in our app.
-
-
-
-
